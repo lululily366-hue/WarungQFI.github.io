@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warung QFI — Toko Rumahan</title>
+  <!-- Font Awesome untuk ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #fef9f0;
+      color: #2d2d2d;
+      line-height: 1.5;
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    /* ===== HEADER / COVER ===== */
+    .cover {
+      background: linear-gradient(145deg, #fff3e0, #ffe6c7);
+      border-radius: 2rem 2rem 1.5rem 1.5rem;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      padding: 2rem 1.5rem 1.8rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #ffd9a8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: "🏪";
+      position: absolute;
+      font-size: 7rem;
+      opacity: 0.07;
+      right: 10px;
+      bottom: -20px;
+      transform: rotate(10deg);
+      pointer-events: none;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .brand i {
+      font-size: 2.8rem;
+      color: #b85e1a;
+    }
+
+    .brand h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #6b3f1b;
+      text-shadow: 3px 3px 0 #ffdbb5;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #8b5a2b;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      border-left: 6px solid #b85e1a;
+      padding-left: 1rem;
+    }
+
+    /* Ilustrasi keluarga & toko (cover foto) */
+    .cover-illustration {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 1rem 2rem;
+      background: #fff6ea;
+      border-radius: 40px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.8rem 0 1.2rem;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.02), 0 6px 12px rgba(184, 94, 26, 0.08);
+      border: 2px dashed #e7b27e;
+    }
+
+    .toko-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .toko-icon {
+      font-size: 4.5rem;
+      filter: drop-shadow(2px 6px 6px rgba(0,0,0,0.1));
+      line-height: 1;
+    }
+
+    .toko-label {
+      font-weight: 700;
+      background: #b85e1a;
+      color: white;
+      padding: 0.2rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      margin-top: 0.3rem;
+    }
+
+    .rumah-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .rumah-icon {
+      font-size: 4rem;
+      filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.1));
+    }
+
+    .keluarga-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1rem;
+      background: #ffe6cf;
+      border-radius: 60px;
+      padding: 1rem 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .anggota {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wajah {
+      font-size: 2.8rem;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+    }
+
+    .keterangan {
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: #f0c9a0;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      color: #4a2c12;
+      margin-top: 0.2rem;
+      white-space: nowrap;
+    }
+
+    .cover-illustration .caption {
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #8b5a2b;
+      margin-top: 1rem;
+      font-style: italic;
+      border-top: 1px solid #e7c9a8;
+      padding-top: 0.8rem;
+    }
+
+    /* Sosial & WA */
+    .social-contact {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      border: 1px solid #ffd9a8;
+      margin-top: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      color: #4a2c12;
+      background: #fff1e0;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      transition: 0.2s;
+      border: 1px solid #e7b27e;
+    }
+
+    .social-links a:hover {
+      background: #b85e1a;
+      color: white;
+      border-color: #b85e1a;
+    }
+
+    .social-links i {
+      font-size: 1.2rem;
+    }
+
+    .wa-number {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #25D366;
+      color: white;
+      padding: 0.4rem 1.3rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+    }
+
+    .wa-number i {
+      font-size: 1.4rem;
+    }
+
+    /* ===== MENU UTAMA ===== */
+    .menu-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #6b3f1b;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-bottom: 4px solid #ffd9a8;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title i {
+      font-size: 2rem;
+      color: #b85e1a;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f0d9c0;
+      transition: 0.25s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px rgba(184, 94, 26, 0.12);
+      border-color: #b85e1a;
+    }
+
+    .menu-card i {
+      font-size: 3.2rem;
+      color: #b85e1a;
+      background: #fff2e4;
+      padding: 0.8rem;
+      border-radius: 60px;
+    }
+
+    .menu-card h3 {
+      font-size: 1.4rem;
+      color: #3d2a1b;
+    }
+
+    .menu-card p {
+      font-size: 0.9rem;
+      color: #7a5a3a;
+      margin-bottom: 0.3rem;
+    }
+
+    .badge {
+      background: #ffe6cf;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6b3f1b;
+      margin-top: 0.3rem;
+    }
+
+    /* ===== SUB MENU / DETAIL ===== */
+    .detail-section {
+      margin-top: 2.5rem;
+      background: #fffbf5;
+      border-radius: 2rem;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid #f0d9c0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .detail-header h2 {
+      font-size: 1.8rem;
+      color: #6b3f1b;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .close-detail {
+      background: #ffe6cf;
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1.4rem;
+      font-weight: 600;
+      color: #6b3f1b;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .close-detail:hover {
+      background: #b85e1a;
+      color: white;
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .sub-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.3rem 1rem;
+      border: 1px solid #e7c9a8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .sub-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #b85e1a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sub-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed #f0d9c0;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .sub-item:last-child {
+      border-bottom: none;
+    }
+
+    .tag {
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .tag-siap {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .tag-po {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    /* Jam & kondisi */
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .info-box {
+      flex: 1 1 200px;
+      background: #fff2e4;
+      padding: 1.2rem 1.5rem;
+      border-radius: 1.5rem;
+      border-left: 8px solid #b85e1a;
+    }
+
+    .info-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #4a2c12;
+    }
+
+    .info-box p {
+      font-size: 1rem;
+      color: #3d2a1b;
+    }
+
+    /* Layanan pesan antar */
+    .delivery-banner {
+      margin-top: 2rem;
+      background: #2d2d2d;
+      color: white;
+      border-radius: 1.5rem;
+      padding: 1.2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background-image: linear-gradient(135deg, #2d2d2d, #4a3729);
+    }
+
+    .delivery-banner i {
+      font-size: 2rem;
+      color: #ffb86b;
+    }
+
+    .delivery-banner span {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .delivery-banner small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .delivery-btn {
+      background: #ffb86b;
+      color: #2d2d2d;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .delivery-btn:hover {
+      background: #ffa53e;
+      transform: scale(1.02);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      font-size: 0.9rem;
+      color: #a07d5c;
+      border-top: 2px solid #ffe6c7;
+      padding-top: 1.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .brand h1 {
+        font-size: 2.3rem;
+      }
+      .brand i {
+        font-size: 2.2rem;
+      }
+      .cover-illustration {
+        padding: 1rem 0.8rem;
+      }
+      .social-contact {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+      }
+      .social-links {
+        justify-content: center;
+      }
+      .wa-number {
+        justify-content: center;
+      }
+      .delivery-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ========== COVER / HEADER ========== -->
+  <div class="cover">
+    <div class="brand">
+      <i class="fas fa-store-alt"></i>
+      <h1>Warung QFI</h1>
+    </div>
+    <div class="tagline">Toko rumahan · Siap antar · Ramah keluarga</div>
+
+    <!-- Ilustrasi cover foto: toko kecil di samping rumah + keluarga tersenyum -->
+    <div class="cover-illustration">
+      <!-- Toko kecil -->
+      <div class="toko-box">
+        <div class="toko-icon">🏪</div>
+        <div class="toko-label">Warung QFI</div>
+      </div>
+      <!-- Rumah -->
+      <div class="rumah-box">
+        <div class="rumah-icon">🏡</div>
+        <div class="toko-label" style="background: #8b5a2b;">Rumah</div>
+      </div>
+      <!-- Keluarga 5 anggota: ayah, ibu, 3 anak perempuan (20,18,12) -->
+      <div class="keluarga-box">
+        <div class="anggota">
+          <div class="wajah">👨</div>
+          <div class="keterangan">Ayah</div>
+        </div>
+        <div class="anggota">
+          <div class="wajah">👩</div>
+          <div class="keterangan">Ibu</div>
+        </div>
+        <div class="anggota">
+          <div class="wajah">👩‍🦰</div>
+          <div class="keterangan">Anak 20</div>
+        </div>
+        <div class="anggota">
+          <div class="wajah">👩</div>
+          <div class="keterangan">Anak 18</div>
+        </div>
+        <div class="anggota">
+          <div class="wajah">👧</div>
+          <div class="keterangan">Anak 12</div>
+        </div>
+      </div>
+      <div class="caption">✨ Keluarga QFI tersenyum · Toko kecil di samping rumah ✨</div>
+    </div>
+
+    <!-- Akun IG & No WA -->
+    <div class="social-contact">
+      <div class="social-links">
+        <a href="https://instagram.com/warungqfi" target="_blank"><i class="fab fa-instagram"></i> @warungqfi</a>
+      </div>
+      <div class="wa-number">
+        <i class="fab fa-whatsapp"></i> 0812-3456-7890
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MENU UTAMA ========== -->
+  <div class="menu-section">
+    <div class="section-title">
+      <i class="fas fa-list-ul"></i> Menu Pilihan
+    </div>
+    <div class="menu-grid">
+      <!-- Stok Barang -->
+      <div class="menu-card" onclick="showDetail('stok')">
+        <i class="fas fa-boxes"></i>
+        <h3>Stok Barang</h3>
+        <p>Barang siap kirim & pre-order</p>
+        <span class="badge">2 kategori</span>
+      </div>
+      <!-- Makanan Harian -->
+      <div class="menu-card" onclick="showDetail('makanan')">
+        <i class="fas fa-utensils"></i>
+        <h3>Makanan Harian</h3>
+        <p>Jajanan, minuman, nasi</p>
+        <span class="badge">Siap & PO</span>
+      </div>
+      <!-- Kondisi Toko & Jam -->
+      <div class="menu-card" onclick="showDetail('kondisi')">
+        <i class="fas fa-clock"></i>
+        <h3>Kondisi Toko</h3>
+        <p>Jam buka & tutup</p>
+        <span class="badge">Info terkini</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DETAIL SECTION (muncul saat menu diklik) ========== -->
+  <div id="detailSection" class="detail-section hidden">
+    <div class="detail-header">
+      <h2 id="detailTitle"><i class="fas fa-info-circle"></i> Detail</h2>
+      <button class="close-detail" onclick="hideDetail()"><i class="fas fa-times"></i> Tutup</button>
+    </div>
+    <div id="detailContent">
+      <!-- Konten akan diisi oleh JavaScript -->
+    </div>
+  </div>
+
+  <!-- ========== LAYANAN PESAN ANTAR (selalu tampil) ========== -->
+  <div class="delivery-banner">
+    <div>
+      <i class="fas fa-motorcycle"></i>
+      <span>Layanan Pesan Antar</span>
+      <small>Gratis ongkir min. belanja Rp50.000 (radius 3 km)</small>
+    </div>
+    <button class="delivery-btn" onclick="alert('Silakan hubungi WA 0812-3456-7890 untuk pesan antar!')">
+      <i class="fab fa-whatsapp"></i> Pesan Antar
+    </button>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>© 2025 Warung QFI — Toko Rumahan Keluarga. Semua hak dilindungi.</p>
+    <p style="margin-top: 0.3rem;">IG: @warungqfi · WA: 0812-3456-7890</p>
+  </footer>
+</div>
+
+<script>
+  // Data untuk setiap menu detail
+  const detailData = {
+    stok: {
+      title: '<i class="fas fa-boxes"></i> Stok Barang',
+      content: `
+        <div class="sub-grid">
+          <div class="sub-card">
+            <h4><i class="fas fa-check-circle" style="color:#2e7d32;"></i> Barang Siap Kirim</h4>
+            <div class="sub-item"><span>Beras 5 kg</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Minyak goreng 2 L</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Gula pasir 1 kg</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Telur 1 kg</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Mie instan (dus)</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Sabun cuci 800 ml</span> <span class="tag tag-siap">Siap</span></div>
+          </div>
+          <div class="sub-card">
+            <h4><i class="fas fa-clock" style="color:#b85e1a;"></i> Barang Pre-Order (PO)</h4>
+            <div class="sub-item"><span>Galon air isi ulang</span> <span class="tag tag-po">PO 1 hari</span></div>
+            <div class="sub-item"><span>Gas LPG 3 kg</span> <span class="tag tag-po">PO 2 hari</span></div>
+            <div class="sub-item"><span>Kotak tisu (lusinan)</span> <span class="tag tag-po">PO 1 hari</span></div>
+            <div class="sub-item"><span>Snack kiloan (5 kg)</span> <span class="tag tag-po">PO 2 hari</span></div>
+            <div class="sub-item"><span>Es batu kristal (10 bungkus)</span> <span class="tag tag-po">PO 1 hari</span></div>
+          </div>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.9rem; color: #8b5a2b;"><i class="fas fa-truck"></i> Stok siap kirim bisa langsung diambil/diantar. PO dikonfirmasi via WA.</p>
+      `
+    },
+    makanan: {
+      title: '<i class="fas fa-utensils"></i> Makanan Harian',
+      content: `
+        <div class="sub-grid">
+          <div class="sub-card">
+            <h4><i class="fas fa-cookie-bite"></i> Jajanan</h4>
+            <div class="sub-item"><span>Pisang goreng (5 pcs)</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Tahu isi (5 pcs)</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Risoles (10 pcs)</span> <span class="tag tag-po">PO 3 jam</span></div>
+            <div class="sub-item"><span>Kue lapis (1 loyang)</span> <span class="tag tag-po">PO 6 jam</span></div>
+            <div class="sub-item"><span>Donat gula (6 pcs)</span> <span class="tag tag-siap">Siap</span></div>
+          </div>
+          <div class="sub-card">
+            <h4><i class="fas fa-mug-hot"></i> Minuman</h4>
+            <div class="sub-item"><span>Es teh manis</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Kopi hitam</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Jus jeruk segar</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Es campur</span> <span class="tag tag-po">PO 30 mnt</span></div>
+            <div class="sub-item"><span>Wedang jahe</span> <span class="tag tag-po">PO 20 mnt</span></div>
+          </div>
+          <div class="sub-card">
+            <h4><i class="fas fa-utensil-spoon"></i> Nasi</h4>
+            <div class="sub-item"><span>Nasi putih + telur</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Nasi goreng biasa</span> <span class="tag tag-siap">Siap</span></div>
+            <div class="sub-item"><span>Nasi ayam kecap</span> <span class="tag tag-po">PO 25 mnt</span></div>
+            <div class="sub-item"><span>Nasi rendang</span> <span class="tag tag-po">PO 40 mnt</span></div>
+            <div class="sub-item"><span>Nasi uduk + bihun</span> <span class="tag tag-siap">Siap</span></div>
+          </div>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.9rem; color: #8b5a2b;"><i class="fas fa-clock"></i> Menu PO bisa dipesan minimal 30 menit sebelumnya. Siap = tersedia langsung.</p>
+      `
+    },
+    kondisi: {
+      title: '<i class="fas fa-store"></i> Kondisi Toko & Jam Operasional',
+      content: `
+        <div class="info-row">
+          <div class="info-box">
+            <h4><i class="fas fa-calendar-alt"></i> Kondisi Toko</h4>
+            <p>✅ Toko buka normal<br>✅ Stok barang lengkap<br>✅ Keluarga QFI siap melayani<br>🔄 Update: 10 Feb 2025</p>
+          </div>
+          <div class="info-box">
+            <h4><i class="fas fa-sun"></i> Jam Buka</h4>
+            <p>Senin – Sabtu: 06.00 – 21.00<br>Minggu: 07.00 – 20.00</p>
+          </div>
+          <div class="info-box">
+            <h4><i class="fas fa-moon"></i> Jam Tutup</h4>
+            <p>Setiap hari tutup pukul 21.00 WIB<br>Kecuali hari besar: 18.00 WIB</p>
+          </div>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.9rem; color: #8b5a2b;"><i class="fas fa-info-circle"></i> Untuk pesanan di luar jam operasional, silakan hubungi WA — kami usahakan.</p>
+      `
+    }
+  };
+
+  // Fungsi menampilkan detail berdasarkan menu yang dipilih
+  function showDetail(menu) {
+    const detailSection = document.getElementById('detailSection');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailContent = document.getElementById('detailContent');
+
+    if (detailData[menu]) {
+      detailTitle.innerHTML = detailData[menu].title;
+      detailContent.innerHTML = detailData[menu].content;
+      detailSection.classList.remove('hidden');
+      // scroll ke detail dengan halus
+      detailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Fungsi menutup detail
+  function hideDetail() {
+    document.getElementById('detailSection').classList.add('hidden');
+  }
+
+  // (Opsional) Tampilkan default 'stok' saat halaman dimuat? Tidak, biarkan tersembunyi.
+  // Bisa juga klik menu pertama untuk demo — tidak perlu.
+</script>
+</body>
+</html>
